@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knockout Training Portal</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Marked.js for parsing Markdown text files into HTML -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body class="locked">
+
+    <!-- LOGIN OVERLAY -->
+    <div id="login-overlay" class="login-overlay">
+        <div class="login-card">
+            <h1 class="brand-text">KNOCKOUT <span class="accent">PORTAL</span></h1>
+            <p>Enter the company password to access SOPs and Training.</p>
+            <div class="input-group">
+                <input type="password" id="password-input" placeholder="Password">
+                <button id="login-btn" class="primary-btn">Unlock</button>
+            </div>
+            <p id="login-error" class="error-msg"></p>
+        </div>
+    </div>
+
+    <!-- MAIN DASHBOARD -->
+    <div id="app-dashboard" class="dashboard hidden">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>KNOCKOUT</h2>
+                <p>Training Hub</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-link active" data-target="home">Dashboard</a>
+                <a href="#" class="nav-link" data-target="sops">SOP Library</a>
+                <a href="#" class="nav-link" data-target="videos">Training Videos</a>
+            </nav>
+            <div class="sidebar-footer">
+                <button id="logout-btn" class="ghost-btn">Lock Portal</button>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="top-header">
+                <div class="search-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <input type="text" id="global-search" placeholder="Search SOPs and Training Videos...">
+                </div>
+                <div class="user-badge">
+                    KO
+                </div>
+            </header>
+
+            <div class="content-view">
+                <!-- Home View -->
+                <section id="view-home" class="view-section active">
+                    <h2 class="section-title">Welcome to the Knockout Hub</h2>
+                    <p class="section-subtitle">Your central repository for operating procedures and core training.</p>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card" onclick="document.querySelector('[data-target=sops]').click()">
+                            <h3>Total SOPs</h3>
+                            <p class="stat-number" id="total-sops-count">--</p>
+                        </div>
+                        <div class="stat-card" onclick="document.querySelector('[data-target=videos]').click()">
+                            <h3>Training Videos</h3>
+                            <p class="stat-number" id="total-videos-count">--</p>
+                        </div>
+                    </div>
+
+                    <h3 class="subsection-title">Recently Added</h3>
+                    <div class="recent-grid" id="recent-content">
+                        <!-- Populated by JS -->
+                    </div>
+                </section>
+
+                <!-- SOP Library View -->
+                <section id="view-sops" class="view-section hidden">
+                    <div class="header-with-actions">
+                        <h2 class="section-title">Standard Operating Procedures</h2>
+                    </div>
+                    <div class="sop-list" id="sop-directory">
+                        <!-- Populated by JS -->
+                    </div>
+                </section>
+
+                <!-- Video Training View -->
+                <section id="view-videos" class="view-section hidden">
+                    <h2 class="section-title">Core Training Channels</h2>
+                    <div class="video-grid" id="video-directory">
+                        <!-- Populated by JS -->
+                    </div>
+                </section>
+
+                <!-- Single Item View (For reading an SOP or watching a Video) -->
+                <section id="view-item" class="view-section hidden">
+                    <button id="back-btn" class="ghost-btn mb-4">← Back to Overview</button>
+                    <div id="item-content-container" class="item-container">
+                        <!-- Content goes here -->
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="sops-registry.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
