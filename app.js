@@ -152,20 +152,37 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        filtered.forEach(item => {
-            const row = document.createElement('div');
-            row.className = 'sop-row';
-            row.innerHTML = `
-                <div class="sop-info">
-                    <h4>${item.title}</h4>
-                    <p>${item.description}</p>
-                </div>
-                <div class="sop-meta">
-                    <span class="ghost-btn" style="border:none; pointer-events: none;">Read -></span>
-                </div>
-            `;
-            row.addEventListener('click', () => openSop(item));
-            els.sopDirectory.appendChild(row);
+        // Group by division
+        const grouped = {};
+        filtered.forEach(s => {
+            const div = s.division || 'General';
+            if(!grouped[div]) grouped[div] = [];
+            grouped[div].push(s);
+        });
+
+        // Render groups
+        Object.keys(grouped).forEach(division => {
+            const groupHeader = document.createElement('h3');
+            groupHeader.className = 'subsection-title';
+            groupHeader.style.marginTop = '1rem';
+            groupHeader.innerText = `📂 ${division}`;
+            els.sopDirectory.appendChild(groupHeader);
+
+            grouped[division].forEach(item => {
+                const row = document.createElement('div');
+                row.className = 'sop-row';
+                row.innerHTML = `
+                    <div class="sop-info">
+                        <h4>${item.title}</h4>
+                        <p>${item.description}</p>
+                    </div>
+                    <div class="sop-meta">
+                        <span class="ghost-btn" style="border:none; pointer-events: none;">Read -></span>
+                    </div>
+                `;
+                row.addEventListener('click', () => openSop(item));
+                els.sopDirectory.appendChild(row);
+            });
         });
     }
 

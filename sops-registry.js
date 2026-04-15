@@ -6,22 +6,33 @@ const PORTAL_CONTENT = {
         {
             id: 'sop-home-inspection',
             title: 'Standard Home Inspection Process',
+            division: 'Home Inspection',
             description: 'The step-by-step required process for executing a residential home inspection.',
-            filename: 'sops/home-inspection.md',
+            filename: 'sops/home-inspection/home-inspection.md',
             date: '2026-04-10'
         },
         {
-            id: 'sop-fortified-eval',
-            title: 'FORTIFIED Evaluation Guidelines',
-            description: 'Core procedural checklist for capturing required photos for IBHS.',
-            filename: 'sops/fortified-eval.md',
-            date: '2026-04-12'
+            id: 'sop-fortified-photos',
+            title: 'Required Photos for FORTIFIED',
+            division: 'FORTIFIED',
+            description: 'Checklist of the absolute minimum photos required for IBHS certification.',
+            filename: 'sops/fortified/required-photos.md',
+            date: '2026-04-14'
+        },
+        {
+            id: 'sop-fortified-fails',
+            title: 'Common FORTIFIED Fail Points',
+            division: 'FORTIFIED',
+            description: 'A guide on how to spot nailing and sealant mistakes made by contractors.',
+            filename: 'sops/fortified/common-fail-points.md',
+            date: '2026-04-14'
         },
         {
             id: 'sop-office-admin',
             title: 'New Client Intake & Scheduling',
+            division: 'Admin',
             description: 'How to process a new lead and schedule an inspection in ISN.',
-            filename: 'sops/office-admin.md',
+            filename: 'sops/admin/office-admin.md',
             date: '2026-04-14'
         }
     ],
